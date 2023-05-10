@@ -1,16 +1,14 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import React from 'react';
 
-import { Button } from "@/components/Button";
-import { NavigationProps } from "@/dtos/stackProps";
+import { Button } from '@/components/Button';
+import { NavigationProps } from '@/dtos/stackProps';
 
-import Logo from "@/assets/logo.svg";
-import * as S from "./styles";
+import Logo from '@/assets/logo.svg';
+import * as S from './styles';
 
-export function Welcome({navigation}: NavigationProps) {
+export function Welcome({ navigation }: NavigationProps) {
   return (
     <>
-      <StatusBar hidden />
       <S.Container>
         <S.HeaderDetail>
           <S.CircleLogo>
@@ -23,12 +21,12 @@ export function Welcome({navigation}: NavigationProps) {
         <S.WrapperImage>
           <S.ContainerImage>
             <S.FemaleAvatar
-              source={require("@/assets/images/female-avatar.png")}
+              source={require('@/assets/images/female-avatar.png')}
               resizeMode="contain"
             />
 
             <S.MaleAvatar
-              source={require("@/assets/images/male-avatar.png")}
+              source={require('@/assets/images/male-avatar.png')}
               resizeMode="contain"
             />
           </S.ContainerImage>
@@ -36,7 +34,7 @@ export function Welcome({navigation}: NavigationProps) {
         </S.WrapperImage>
 
         <S.Wrapper>
-          <Button name="Começar" onPress={() => navigation.navigate("Home")}/>
+          <Button name="Começar" onPress={() => navigation.navigate('Home')} />
         </S.Wrapper>
       </S.Container>
     </>

@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -32,7 +32,7 @@ export const Title = styled.Text`
 export const WrapperImage = styled.View`
   width: 100%;
   height: 38%;
-  `;
+`;
 
 export const ContainerImage = styled.View`
   flex-direction: row;
@@ -42,9 +42,9 @@ export const ContainerImage = styled.View`
 
 export const Overlay = styled.View`
   width: 100%;
-  height: 42px;
+  height: 46px;
   z-index: 99;
-  background-color: #FF470B82;
+  background-color: #ff470b82;
   position: absolute;
   bottom: 0;
 `;

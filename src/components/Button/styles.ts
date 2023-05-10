@@ -7,12 +7,11 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: #FFF;
+  background-color: #fff;
 `;
 
 export const Title = styled.Text`
   font-size: 17px;
   font-weight: 600;
-  color: #FF460A;
+  color: #ff460a;
 `;
-
