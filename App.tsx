@@ -1,14 +1,36 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from 'styled-components';
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_800ExtraBold,
+} from '@expo-google-fonts/inter';
 
-import { Welcome } from "./src/screens/Welcome";
-import { Routes } from "@/routes";
+import theme from '@/styles/theme';
+
+import { Routes } from '@/routes';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <>
-      <StatusBar style="light" backgroundColor="transparent" translucent />
+    <ThemeProvider theme={theme}>
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       <Routes />
-    </>
+    </ThemeProvider>
   );
 }

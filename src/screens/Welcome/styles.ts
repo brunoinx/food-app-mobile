@@ -1,8 +1,8 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #ff4b3a;
+  background-color: ${({ theme }) => theme.colors.main[500]};
 `;
 
 export const HeaderDetail = styled.View`
@@ -22,11 +22,13 @@ export const CircleLogo = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 65px;
-  font-weight: 800;
-  line-height: 66px;
-  margin-left: 2px;
-  color: #fff;
+  ${({ theme }) => css`
+    font-size: 58px;
+    line-height: 66px;
+    margin-left: 2px;
+    font-family: ${theme.fonts.inter[800]};
+    color: ${theme.colors.white};
+  `}
 `;
 
 export const WrapperImage = styled.View`
