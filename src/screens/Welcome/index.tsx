@@ -1,13 +1,13 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 
-import * as S from "./styles";
+import { Button } from "@/components/Button";
+import { NavigationProps } from "@/dtos/stackProps";
 
 import Logo from "@/assets/logo.svg";
-import { Button } from "@/components/Button";
-import { View } from "react-native";
+import * as S from "./styles";
 
-export function Welcome() {
+export function Welcome({navigation}: NavigationProps) {
   return (
     <>
       <StatusBar hidden />
@@ -36,7 +36,7 @@ export function Welcome() {
         </S.WrapperImage>
 
         <S.Wrapper>
-          <Button name="Começar" />
+          <Button name="Começar" onPress={() => navigation.navigate("Home")}/>
         </S.Wrapper>
       </S.Container>
     </>
