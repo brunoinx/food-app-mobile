@@ -1,0 +1,188 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "name": "Pizza",
+      "description": "Uma deliciosa pizza assada no forno com uma variedade de coberturas, como queijo, tomate e pepperoni.",
+      "value": 15.99,
+      "image": "https://www.foodiesfeed.com/wp-content/uploads/2022/07/pizza-with-pineapple-and-thin-crust.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Sushi",
+      "description": "Uma iguaria japonesa composta por arroz temperado com vinagre, envolto em alga nori e recheado com peixe cru, frutos do mar ou legumes.",
+      "value": 12.5,
+      "image": "https://www.sushipoel.be/Frontend/Images/category2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Hambúrguer",
+      "description": "Um sanduíche feito com um ou mais discos de carne grelhada, normalmente servido em um pão com vários acompanhamentos.",
+      "value": 9.99,
+      "image": "https://img.freepik.com/fotos-premium/hamburguer-de-carne-caseiro-fastfood-delicioso-fechar-se_151349-156.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Pad Thai",
+      "description": "Um prato tailandês de macarrão de arroz frito com legumes, camarão, frango ou tofu, geralmente temperado com molho de tamarindo e amendoim.",
+      "value": 11.75,
+      "image": "https://images.food52.com/squcpTHtgtA7X2SEdXPY0zIvHJc=/2016x1344/filters:format(webp)/f0917df7-8286-44ab-b437-e8d0d291e11f--2019-1119_pad-thai_3x2_rocky-luten_003.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Tacos",
+      "description": "Um prato mexicano composto por tortilhas de milho ou trigo dobradas e recheadas com carne, queijo, guacamole, salsa e outros ingredientes.",
+      "value": 8.25,
+      "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/2/29/0/0149359_Making-Taco_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371603491866.jpeg"
+    },
+    {
+      "id": 6,
+      "name": "Ramen",
+      "description": "Uma sopa japonesa feita com caldo de ossos, macarrão e várias guarnições, como carne de porco fatiada, ovos e cebolinha.",
+      "value": 10.5,
+      "image": "https://www.foodandwine.com/thmb/VV9oq_xJpAKrn7KAGLAi8_WOf1M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/collard-greens-ramen-ft-RECIPE0119-1657e39103e149edadd19e2b9c81225c.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Lasanha",
+      "description": "Um prato de massa italiana em camadas, geralmente feito com folhas de lasanha, molho de carne, queijo e molho bechamel.",
+      "value": 13.99,
+      "image": "https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2020/07/lasanha_bolonhesa.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Sashimi",
+      "description": "Uma especialidade japonesa de fatias finas de peixe cru, geralmente servido com molho de soja e wasabi.",
+      "value": 14.25,
+      "image": "https://www.manusmenu.com/wp-content/uploads/2016/05/1-Salmon-Sashimi-with-Ponzu-3-1-of-1.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Moussaka",
+      "description": "Um prato grego camadas de berinjela, carne moída temperada com especiarias, molho de tomate e cobertura de molho bechamel, assado no forno.",
+      "value": 12.99,
+      "image": "https://cookingorgeous.com/wp-content/uploads/2021/06/main-dishes.jpg"
+    }
+  ],
+  "drinks": [
+    {
+      "id": "1",
+      "name": "Mojito",
+      "description": "Um coquetel refrescante feito com rum, hortelã, suco de limão, açúcar e água com gás.",
+      "value": 9.99,
+      "image": "https://exemplo.com/imagens/mojito.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Margarita",
+      "description": "Um coquetel mexicano feito com tequila, suco de limão e licor de laranja, geralmente servido com sal na borda do copo.",
+      "value": 8.75,
+      "image": "https://exemplo.com/imagens/margarita.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Cosmopolitan",
+      "description": "Um coquetel clássico feito com vodka, suco de cranberry, licor de laranja e suco de limão.",
+      "value": 10.5,
+      "image": "https://exemplo.com/imagens/cosmopolitan.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Piña Colada",
+      "description": "Um coquetel tropical feito com rum, suco de abacaxi e leite de coco, geralmente servido com gelo e decorado com uma fatia de abacaxi.",
+      "value": 11.25,
+      "image": "https://exemplo.com/imagens/pina-colada.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Old Fashioned",
+      "description": "Um coquetel clássico feito com uísque, açúcar, angostura bitters e uma casca de laranja.",
+      "value": 12.99,
+      "image": "https://exemplo.com/imagens/old-fashioned.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Mai Tai",
+      "description": "Um coquetel tiki feito com rum, suco de limão, curaçao de laranja, xarope de orgeat e um toque de hortelã.",
+      "value": 10.75,
+      "image": "https://exemplo.com/imagens/mai-tai.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Caipirinha",
+      "description": "Um coquetel brasileiro feito com cachaça, limão, açúcar e gelo.",
+      "value": 9.25,
+      "image": "https://exemplo.com/imagens/caipirinha.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Daiquiri",
+      "description": "Um coquetel clássico feito com rum, suco de limão e açúcar, geralmente servido frozen ou on the rocks.",
+      "value": 8.99,
+      "image": "https://exemplo.com/imagens/daiquiri.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Moscow Mule",
+      "description": "Um coquetel feito com vodka, ginger beer, suco de limão e servido com uma fatia de limão e hortelã.",
+      "value": 11.99,
+      "image": "https://exemplo.com/imagens/moscow-mule.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Negroni",
+      "description": "Um coquetel clássico feito com gin, vermute tinto e Campari, geralmente servido com uma fatia de laranja.",
+      "value": 11.5,
+      "image": "https://exemplo.com/imagens/negroni.jpg"
+    },
+    {
+      "id": "11",
+      "name": "Sangria",
+      "description": "Uma bebida espanhola feita com vinho tinto, frutas picadas, açúcar, suco de laranja e licor de frutas.",
+      "value": 10.25,
+      "image": "https://exemplo.com/imagens/sangria.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Manhattan",
+      "description": "Um coquetel clássico feito com uísque bourbon, vermute doce e angostura bitters, geralmente servido com uma cereja.",
+      "value": 12.75,
+      "image": "https://exemplo.com/imagens/manhattan.jpg"
+    },
+    {
+      "id": "13",
+      "name": "Gin and Tonic",
+      "description": "Um coquetel simples feito com gin e água tônica, geralmente servido com uma rodela de limão ou pepino.",
+      "value": 9.5,
+      "image": "https://exemplo.com/imagens/gin-and-tonic.jpg"
+    },
+    {
+      "id": "14",
+      "name": "Whiskey Sour",
+      "description": "Um coquetel clássico feito com uísque, suco de limão e açúcar, geralmente servido com uma cereja e uma fatia de laranja.",
+      "value": 8.75,
+      "image": "https://exemplo.com/imagens/whiskey-sour.jpg"
+    },
+    {
+      "id": "15",
+      "name": "White Russian",
+      "description": "Um coquetel cremoso feito com vodka, licor de café e creme de leite, geralmente servido com gelo.",
+      "value": 10.99,
+      "image": "https://exemplo.com/imagens/white-russian.jpg"
+    },
+    {
+      "id": "16",
+      "name": "Mint Julep",
+      "description": "Um coquetel clássico feito com bourbon, açúcar e folhas de hortelã, geralmente servido com gelo picado.",
+      "value": 11.25,
+      "image": "https://exemplo.com/imagens/mint-julep.jpg"
+    },
+    {
+      "id": "17",
+      "name": "Pisco Sour",
+      "description": "Um coquetel peruano feito com pisco, suco de limão, clara de ovo e açúcar, geralmente servido com uma pitada de angostura bitters.",
+      "value": 10.5,
+      "image": "https://exemplo.com/imagens/pisco-sour.jpg"
+    }
+  ]
+}
