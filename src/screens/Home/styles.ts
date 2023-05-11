@@ -30,3 +30,11 @@ export const Title = styled.Text`
     font-family: ${theme.fonts.inter[700]};
   `};
 `;
+
+export const WrapperList = styled.View`
+  margin-top: 64px;
+`;
+
+export const WrapperCard = styled.View`
+  margin-right: 34px;
+`;
