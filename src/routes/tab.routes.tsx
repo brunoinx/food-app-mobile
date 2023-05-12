@@ -8,12 +8,12 @@ import {
   ClockCounterClockwise,
 } from 'phosphor-react-native';
 
-import { StackRoutes } from './stack.routes';
+import { AppStackRoutes } from './stacks/app.routes';
 import { RootTabsParamList } from '@/dtos/RootParamsListDTO';
 
-import { Favorites } from '@/screens/Favorites';
-import { Profile } from '@/screens/Profile';
-import { History } from '@/screens/History';
+import { Favorites } from '@/screens/app/Favorites';
+import { Profile } from '@/screens/app/Profile';
+import { History } from '@/screens/app/History';
 
 const { Navigator, Screen } = createBottomTabNavigator<RootTabsParamList>();
 
@@ -70,7 +70,7 @@ export function TabRoutes() {
         },
       })}
     >
-      <Screen name="HomeStack" component={StackRoutes} />
+      <Screen name="HomeStack" component={AppStackRoutes} />
       <Screen name="Favorites" component={Favorites} />
       <Screen name="Profile" component={Profile} />
       <Screen name="History" component={History} />
