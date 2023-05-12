@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '@/components/Button';
-import { NavigationProps } from '@/dtos/stackProps';
+import { NavigationProps } from '@/dtos/RootParamsListDTO';
 
 import Logo from '@/assets/logo.svg';
 import * as S from './styles';
@@ -34,7 +34,10 @@ export function Welcome({ navigation }: NavigationProps) {
         </S.WrapperImage>
 
         <S.Wrapper>
-          <Button name="Começar" onPress={() => navigation.navigate('Home')} />
+          <Button
+            name="Começar"
+            onPress={() => navigation.navigate('Session')}
+          />
         </S.Wrapper>
       </S.Container>
     </>
