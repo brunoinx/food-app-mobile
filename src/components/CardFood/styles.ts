@@ -1,11 +1,17 @@
+import { TouchableOpacity } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled(TouchableOpacity)`
   height: 320px;
 `;
 
+export const ShadowView = styled.View.attrs({ elevation: 8 })`
+  background-color: ${({ theme }) => theme.colors.zinc[300]};
+  border-radius: 18px;
+`;
+
 export const Box = styled.View`
-  padding: 0 28px 26px;
+  padding: 0 26px 32px;
   border-radius: 18px;
   align-items: center;
 

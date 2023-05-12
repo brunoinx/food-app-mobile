@@ -18,7 +18,7 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  padding-bottom: 43px;
+  padding-bottom: 42px;
 `;
 
 export const Title = styled.Text`
@@ -36,5 +36,5 @@ export const WrapperList = styled.View`
 `;
 
 export const WrapperCard = styled.View`
-  margin-right: 34px;
+  margin-right: 28px;
 `;
