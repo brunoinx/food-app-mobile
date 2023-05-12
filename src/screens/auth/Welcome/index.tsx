@@ -36,6 +36,7 @@ export function Welcome({ navigation }: NavigationProps) {
         <S.Wrapper>
           <Button
             name="Começar"
+            type="SECONDARY"
             onPress={() => navigation.navigate('Session')}
           />
         </S.Wrapper>
