@@ -16,6 +16,7 @@ export function AuthTabsRoutes() {
   return (
     <Tab.Navigator
       initialRouteName="Login"
+      backBehavior="none"
       screenOptions={{
         swipeEnabled: true,
         tabBarAndroidRipple: { borderless: false },
