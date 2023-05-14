@@ -6,7 +6,7 @@ const { height } = Dimensions.get('window');
 export const Container = styled.View`
   height: 100%;
   max-height: ${height - 298}px;
-  padding: 52px 40px 28px;
+  padding: 44px 40px 28px;
 
   justify-content: space-between;
 `;
@@ -16,7 +16,7 @@ export const Form = styled.View`
 `;
 
 export const WrapperInput = styled.View`
-  margin: 40px 0 22px;
+  margin: 28px 0 22px;
 `;
 
 export const ForgotPassword = styled.Text`

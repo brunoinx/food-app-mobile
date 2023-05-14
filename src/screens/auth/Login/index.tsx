@@ -1,46 +1,102 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
-import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
+import { ControlledTextInput } from '@/components/_controllers/ControlledTextInput';
 
-import * as S from './styles';
-import { userStore } from '@/store';
 import { useToast } from '@/hooks/useToast';
 
+import * as S from './styles';
+import { verifyErrorFirebase } from '@/utils/verifyErrorFirebase';
+
+const validationSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'Endereço de email é obrigatório' })
+    .email({
+      message: 'Digite um email válido',
+    }),
+  password: z
+    .string()
+    .min(6, { message: 'Precisa ter no mínimo 6 caracteres' }),
+});
+
+type LoginSchema = z.infer<typeof validationSchema>;
+
 export function Login() {
+  const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
-  const { setCheckValidUser } = userStore();
 
-  function handleValidUser() {
-    setCheckValidUser(true);
-  }
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchema>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: zodResolver(validationSchema),
+  });
 
-  function handleCallToast() {
-    showToast({
-      title: 'Chamando Todos os Cornos!!',
-      description: 'asdhaksdhkajsdh',
-      type: 'error',
-      duration: 5000,
-    });
-  }
+  const onSubmit: SubmitHandler<LoginSchema> = async data => {
+    try {
+      setLoading(true);
+      await auth().signInWithEmailAndPassword(data.email, data.password);
+
+      showToast({
+        title: 'Tudo certo!',
+        description: 'Login realizado com sucesso.',
+      });
+    } catch (error) {
+      let errorMessage = verifyErrorFirebase(error.code);
+
+      if (errorMessage === null) {
+        errorMessage = error.message;
+      }
+
+      showToast({
+        title: 'Ops!',
+        description: errorMessage,
+        type: 'error',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.Container>
         <S.Form>
-          <Input
-            label="Endereço de Email"
-            keyboardType="email-address"
+          <ControlledTextInput
+            control={control}
+            name="email"
+            label="Endereço de email"
             returnKeyType="next"
+            keyboardType="email-address"
+            rules={{ required: 'Endereço de email é obrigatório' }}
+            errorMessage={errors.email?.message}
           />
 
           <S.WrapperInput>
-            <Input label="Senha" secureTextEntry returnKeyType="done" />
+            <ControlledTextInput
+              control={control}
+              name="password"
+              label="Senha"
+              secureTextEntry
+              returnKeyType="done"
+              errorMessage={errors.password?.message}
+              focusable
+            />
           </S.WrapperInput>
 
           <TouchableOpacity activeOpacity={0.7}>
@@ -48,7 +104,11 @@ export function Login() {
           </TouchableOpacity>
         </S.Form>
 
-        <Button name="Entrar" onPress={handleCallToast} />
+        <Button
+          name="Entrar"
+          loading={loading}
+          onPress={handleSubmit(onSubmit)}
+        />
       </S.Container>
     </TouchableWithoutFeedback>
   );
