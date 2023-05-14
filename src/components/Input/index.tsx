@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextInputProps } from 'react-native';
 
 import * as S from './styles';
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   label: string;
+  errorMessage?: string;
 }
 
-export function Input({ label, ...rest }: InputProps) {
-  const [isFocus, setIsFocus] = useState(false);
-
-  function handleToggleFocus() {
-    setIsFocus(prev => !prev);
-  }
-
+export function Input({ label, errorMessage, ...rest }: InputProps) {
   return (
-    <S.Container>
-      <S.Label>{label}</S.Label>
+    <>
+      <S.Container hasError={!!errorMessage}>
+        <S.Label>{label}</S.Label>
 
-      <S.Input
-        focusable={isFocus}
-        onFocus={handleToggleFocus}
-        onBlur={handleToggleFocus}
-        {...rest}
-      />
-    </S.Container>
+        <S.Input {...rest} />
+      </S.Container>
+
+      <S.ErrorText>{errorMessage}</S.ErrorText>
+    </>
   );
 }
