@@ -14,6 +14,14 @@ export default {
     white: '#FFFFFF',
     black: '#000000',
     blackOpc: '#00000080',
+
+    success: '#00875A',
+    success_light: 'rgba(18, 164, 84, 0.2)',
+
+    warning: '#ffd900',
+
+    error: '#E83F5B',
+    error_light: 'rgba(232, 63, 91, 0.2)',
   },
 
   fonts: {
