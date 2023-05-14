@@ -54,8 +54,6 @@ export const Description = styled.Text`
   ${({ theme }) => css`
     width: 92%;
     font-size: 14px;
-    text-transform: capitalize;
-    /* line-height: 18px; */
 
     font-family: ${theme.fonts.inter[400]};
     color: ${theme.colors.white};
