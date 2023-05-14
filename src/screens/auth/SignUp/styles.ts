@@ -16,5 +16,5 @@ export const Form = styled.View`
 `;
 
 export const WrapperInput = styled.View`
-  margin-bottom: 38px;
+  margin-bottom: 30px;
 `;
