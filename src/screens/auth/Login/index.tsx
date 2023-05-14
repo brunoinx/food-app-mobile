@@ -10,12 +10,23 @@ import { Button } from '@/components/Button';
 
 import * as S from './styles';
 import { userStore } from '@/store';
+import { useToast } from '@/hooks/useToast';
 
 export function Login() {
+  const { showToast } = useToast();
   const { setCheckValidUser } = userStore();
 
   function handleValidUser() {
     setCheckValidUser(true);
+  }
+
+  function handleCallToast() {
+    showToast({
+      title: 'Chamando Todos os Cornos!!',
+      description: 'asdhaksdhkajsdh',
+      type: 'error',
+      duration: 5000,
+    });
   }
 
   return (
@@ -37,7 +48,7 @@ export function Login() {
           </TouchableOpacity>
         </S.Form>
 
-        <Button name="Entrar" onPress={handleValidUser} />
+        <Button name="Entrar" onPress={handleCallToast} />
       </S.Container>
     </TouchableWithoutFeedback>
   );

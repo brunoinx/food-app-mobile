@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
+import Toast from 'react-native-toast-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   useFonts,
@@ -12,6 +13,7 @@ import {
 } from '@expo-google-fonts/inter';
 
 import theme from '@/styles/theme';
+import { toastConfig } from '@/components/Toast/config';
 
 import { Routes } from '@/routes';
 
@@ -33,6 +35,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="dark" backgroundColor="transparent" translucent />
         <Routes />
+        <Toast config={toastConfig} />
       </ThemeProvider>
     </GestureHandlerRootView>
   );
