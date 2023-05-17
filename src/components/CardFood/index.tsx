@@ -8,12 +8,12 @@ import * as S from './styles';
 export type FoodProps = Omit<FoodDTO, 'id' | 'description'> &
   TouchableOpacityProps;
 
-export function CardFood({ name, value, image, ...rest }: FoodProps) {
+export function CardFood({ name, value, images, ...rest }: FoodProps) {
   return (
     <S.Container activeOpacity={0.7} {...rest}>
       <S.ShadowView>
         <S.Box>
-          <S.FoodImage source={{ uri: image }} resizeMode="contain" />
+          <S.FoodImage source={{ uri: images[0] }} resizeMode="contain" />
 
           <S.Name>{name}</S.Name>
 

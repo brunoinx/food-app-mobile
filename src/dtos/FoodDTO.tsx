@@ -2,6 +2,6 @@ export interface FoodDTO {
   id: string;
   name: string;
   description: string;
-  image: string;
+  images: string[];
   value: number;
 }
