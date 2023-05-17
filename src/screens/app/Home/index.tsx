@@ -5,6 +5,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
 
 import * as S from './styles';
 
@@ -20,20 +21,22 @@ export function Home() {
   const [foods, setFoods] = useState<FoodDTO[]>([]);
 
   useEffect(() => {
-    async function fetchFoods() {
-      try {
-        const response = await fetch(
-          'http://192.168.100.23:3000/foods?_start=0&_end=6',
-        );
-        const data = await response.json();
+    const subscriber = firestore()
+      .collection('foods')
+      .onSnapshot(querySnapshot => {
+        let listFoods = [];
 
-        setFoods(data);
-      } catch (error) {
-        console.log('Ocorreu um erro:', error);
-      }
-    }
+        querySnapshot.forEach(documentSnapshot => {
+          listFoods.push({
+            ...documentSnapshot.data(),
+            id: documentSnapshot.id,
+          });
+        });
 
-    fetchFoods();
+        setFoods(listFoods);
+      });
+
+    return () => subscriber();
   }, []);
 
   return (
@@ -69,7 +72,7 @@ export function Home() {
                   key={item.id}
                   name={item.name}
                   value={item.value}
-                  image={item.image}
+                  images={item.images}
                 />
               </S.WrapperCard>
             )}
