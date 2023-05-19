@@ -13,6 +13,7 @@ import { Button } from '@/components/Button';
 import { ControlledTextInput } from '@/components/_controllers/ControlledTextInput';
 
 import { useToast } from '@/hooks/useToast';
+import { userStore } from '@/store/user.store';
 
 import * as S from './styles';
 import { verifyErrorFirebase } from '@/utils/verifyErrorFirebase';
@@ -32,8 +33,9 @@ const validationSchema = z.object({
 type LoginSchema = z.infer<typeof validationSchema>;
 
 export function Login() {
-  const [loading, setLoading] = useState(false);
+  const { setUpdateUser } = userStore();
   const { showToast } = useToast();
+  const [loading, setLoading] = useState(false);
 
   const {
     control,
@@ -50,7 +52,18 @@ export function Login() {
   const onSubmit: SubmitHandler<LoginSchema> = async data => {
     try {
       setLoading(true);
-      await auth().signInWithEmailAndPassword(data.email, data.password);
+      const { user } = await auth().signInWithEmailAndPassword(
+        data.email,
+        data.password,
+      );
+
+      setUpdateUser({
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        photoUrl: user.photoURL,
+        phoneNumber: user.phoneNumber,
+      });
 
       showToast({
         title: 'Tudo certo!',
