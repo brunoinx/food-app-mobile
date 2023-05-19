@@ -6,11 +6,12 @@ export type RootAuthStackParamList = {
 };
 
 export type RootAppStackParamList = {
-  Home: undefined;
+  HomeTabs: undefined;
+  FoodDetails: undefined;
 };
 
 export type RootTabsParamList = {
-  HomeStack: undefined;
+  Home: undefined;
   Favorites: undefined;
   Profile: undefined;
   History: undefined;
