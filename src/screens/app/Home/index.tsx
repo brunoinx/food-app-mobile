@@ -16,13 +16,15 @@ import { CardFood } from '@/components/CardFood';
 import { SearchInput } from '@/components/SearchInput';
 
 import { FoodDTO } from '@/dtos/FoodDTO';
+import { NavigationProps } from '@/dtos/RootParamsListDTO';
 
-export function Home() {
+export function Home({ navigation }: NavigationProps) {
   const [foods, setFoods] = useState<FoodDTO[]>([]);
 
   useEffect(() => {
     const subscriber = firestore()
       .collection('foods')
+      .limit(6)
       .onSnapshot(querySnapshot => {
         let listFoods = [];
 
@@ -38,6 +40,10 @@ export function Home() {
 
     return () => subscriber();
   }, []);
+
+  function handleOpenDetailsFood(foodDetails: FoodDTO) {
+    navigation.navigate('FoodDetails', { food: foodDetails });
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -73,6 +79,7 @@ export function Home() {
                   name={item.name}
                   value={item.value}
                   images={item.images}
+                  onPress={() => handleOpenDetailsFood(item)}
                 />
               </S.WrapperCard>
             )}

@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { FoodDTO } from './FoodDTO';
 
 export type RootAuthStackParamList = {
   Welcome: undefined;
@@ -7,7 +8,7 @@ export type RootAuthStackParamList = {
 
 export type RootAppStackParamList = {
   HomeTabs: undefined;
-  FoodDetails: undefined;
+  FoodDetails: { food: FoodDTO };
 };
 
 export type RootTabsParamList = {
