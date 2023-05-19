@@ -5,6 +5,7 @@ export default {
       500: '#FF4B3A',
     },
     zinc: {
+      200: '#F6F6F9',
       300: '#F2F2F2',
       400: '#EFEEEE',
       500: '#C7C7C7',
