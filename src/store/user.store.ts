@@ -13,14 +13,6 @@ interface StoreProps {
   setUpdateUser: (user: IUser | null) => void;
 }
 
-const initialState: IUser = {
-  id: '',
-  email: '',
-  name: '',
-  phoneNumber: '',
-  photoUrl: '',
-};
-
 export const userStore = create<StoreProps>()(set => ({
   user: null,
   setUpdateUser: userData => set(() => ({ user: userData })),
