@@ -48,7 +48,7 @@ export function Home({ navigation }: NavigationProps) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.Container>
-        <S.Wrapper>
+        <S.WrapperHeading>
           <S.Header>
             <TouchableOpacity>
               <Menu />
@@ -57,16 +57,14 @@ export function Home({ navigation }: NavigationProps) {
               <Cart />
             </TouchableOpacity>
           </S.Header>
-        </S.Wrapper>
 
-        <S.Title>
-          Delicious {'\n'}
-          food for you
-        </S.Title>
+          <S.Title>
+            Delicious {'\n'}
+            food for you
+          </S.Title>
 
-        <S.Wrapper>
           <SearchInput />
-        </S.Wrapper>
+        </S.WrapperHeading>
 
         <S.WrapperList>
           <FlatList
@@ -87,6 +85,7 @@ export function Home({ navigation }: NavigationProps) {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               paddingTop: 64,
+              paddingLeft: 32,
             }}
           />
         </S.WrapperList>

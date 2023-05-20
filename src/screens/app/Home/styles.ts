@@ -4,13 +4,12 @@ export const Container = styled.View`
   ${({ theme }) => css`
     flex: 1;
     padding-top: 65px;
-    padding-left: 50px;
     background-color: ${theme.colors.zinc[300]};
   `}
 `;
 
-export const Wrapper = styled.View`
-  padding-right: 41px;
+export const WrapperHeading = styled.View`
+  padding-left: 50px;
 `;
 
 export const Header = styled.View`
@@ -18,7 +17,7 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  padding-bottom: 42px;
+  padding: 0 41px 42px 0;
 `;
 
 export const Title = styled.Text`
