@@ -5,7 +5,7 @@ import { FoodDTO } from '@/dtos/FoodDTO';
 
 import * as S from './styles';
 
-export type FoodProps = Omit<FoodDTO, 'id' | 'description'> &
+export type FoodProps = Pick<FoodDTO, 'name' | 'value' | 'images'> &
   TouchableOpacityProps;
 
 export function CardFood({ name, value, images, ...rest }: FoodProps) {

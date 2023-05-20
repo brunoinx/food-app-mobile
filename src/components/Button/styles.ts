@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components/native';
 import { ButtonProps } from '.';
+import { TouchableOpacity } from 'react-native';
 
 type ContainerProps = Pick<ButtonProps, 'type'>;
 
@@ -21,10 +22,10 @@ const titleModifier = {
   `,
 };
 
-export const Container = styled.TouchableOpacity<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   ${({ theme, type }) => css`
     width: 100%;
-    height: 60px;
+    height: 70px;
     border-radius: 30px;
     align-items: center;
     justify-content: center;

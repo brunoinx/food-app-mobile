@@ -14,10 +14,10 @@ export function Routes() {
 
   function onAuthStateChanged(_user: FirebaseAuthTypes.User | null) {
     try {
-      if (user === null) {
-        setUpdateUser(null);
-        return;
-      }
+      // if (user === null) {
+      //   setUpdateUser(null);
+      //   return;
+      // }
 
       setUpdateUser({
         id: _user.uid,
