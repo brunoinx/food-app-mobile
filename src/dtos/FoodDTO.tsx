@@ -4,4 +4,5 @@ export interface FoodDTO {
   description: string;
   images: string[];
   value: number;
+  isFavorite: boolean;
 }
