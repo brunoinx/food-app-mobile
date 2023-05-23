@@ -45,6 +45,10 @@ export function Home({ navigation }: NavigationProps) {
     navigation.navigate('FoodDetails', { food: foodDetails });
   }
 
+  function handleOpenCart() {
+    navigation.navigate('Cart');
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.Container>
@@ -53,7 +57,7 @@ export function Home({ navigation }: NavigationProps) {
             <TouchableOpacity>
               <Menu />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleOpenCart}>
               <Cart />
             </TouchableOpacity>
           </S.Header>
