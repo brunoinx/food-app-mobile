@@ -9,6 +9,7 @@ export type RootAuthStackParamList = {
 export type RootAppStackParamList = {
   HomeTabs: undefined;
   FoodDetails: { food: FoodDTO };
+  Cart: undefined;
 };
 
 export type RootTabsParamList = {
