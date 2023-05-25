@@ -114,13 +114,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.foodapp"
+    namespace 'com.foodapp'
     defaultConfig {
-        applicationId "com.foodapp"
+        applicationId 'com.foodapp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     splits {
