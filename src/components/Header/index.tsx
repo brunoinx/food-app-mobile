@@ -1,27 +1,39 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { CaretLeft, Heart } from 'phosphor-react-native';
-import { useNavigation } from '@react-navigation/native';
-
-import * as S from './styles';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@/dtos/RootParamsListDTO';
 import { useTheme } from 'styled-components';
 
+import * as S from './styles';
+
 interface HeaderProps {
+  name?: string;
   isFavorite?: boolean;
   handleAddFavorite?: () => void;
+  handleBack?: () => void;
 }
 
-export function Header({ isFavorite = false, handleAddFavorite }: HeaderProps) {
+export function Header({
+  name,
+  isFavorite = false,
+  handleAddFavorite,
+  handleBack,
+}: HeaderProps) {
   const { goBack } = useNavigation();
   const { colors } = useTheme();
 
   return (
     <S.Container>
-      <TouchableOpacity onPress={() => goBack()}>
-        <CaretLeft size={28} weight="bold" />
+      <TouchableOpacity
+        onPress={!handleBack ? () => goBack() : () => handleBack()}
+      >
+        <CaretLeft size={22} weight="bold" />
       </TouchableOpacity>
 
-      {handleAddFavorite && (
+      <S.Title>{name}</S.Title>
+
+      {handleAddFavorite ? (
         <TouchableOpacity onPress={handleAddFavorite}>
           <Heart
             size={28}
@@ -29,6 +41,8 @@ export function Header({ isFavorite = false, handleAddFavorite }: HeaderProps) {
             color={isFavorite ? colors.error : colors.black}
           />
         </TouchableOpacity>
+      ) : (
+        <View />
       )}
     </S.Container>
   );
