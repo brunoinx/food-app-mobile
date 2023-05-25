@@ -25,8 +25,8 @@ const titleModifier = {
 export const Container = styled(TouchableOpacity)<ContainerProps>`
   ${({ theme, type }) => css`
     width: 100%;
-    height: 70px;
-    border-radius: 30px;
+    height: 62px;
+    border-radius: 31px;
     align-items: center;
     justify-content: center;
 
