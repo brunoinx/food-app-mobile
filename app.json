@@ -10,6 +10,12 @@
       "eas": {
         "projectId": "cd11b5e7-fc83-4e7f-ab70-f6ad43476de8"
       }
+    },
+    "android": {
+      "package": "com.foodapp"
+    },
+    "ios": {
+      "bundleIdentifier": "com.foodapp"
     }
   }
 }
