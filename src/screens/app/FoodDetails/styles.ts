@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 export const Container = styled.View`
   ${({ theme }) => css`
     flex: 1;
-    padding-top: 54px;
+    padding-top: 44px;
     background-color: ${theme.colors.zinc[200]};
   `};
 `;

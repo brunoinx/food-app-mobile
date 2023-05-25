@@ -9,13 +9,17 @@ import { Button } from '@/components/Button';
 import { CustomCarousel } from '@/components/CustomCarousel';
 
 import * as S from './styles';
+import { useCartStore } from '@/store/cart.store';
 
 interface RouteProps {
   food: FoodDTO;
 }
 
-export function FoodDetails({ route }: NavigationProps) {
+export function FoodDetails({ route, navigation }: NavigationProps) {
+  const addToCart = useCartStore(state => state.addToCart);
   const { food } = route.params as RouteProps;
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(food.isFavorite);
 
@@ -26,6 +30,16 @@ export function FoodDetails({ route }: NavigationProps) {
       .update({ isFavorite: !isFavorite });
 
     setIsFavorite(prev => !prev);
+  }
+
+  function handleAddFoodIntoCart() {
+    try {
+      setIsLoading(true);
+      addToCart(food);
+      navigation.navigate('Cart');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -51,7 +65,11 @@ export function FoodDetails({ route }: NavigationProps) {
       </S.WrapperInfo>
 
       <S.WrapperButton>
-        <Button name="Adicionar ao carrinho" />
+        <Button
+          name="Adicionar ao carrinho"
+          loading={isLoading}
+          onPress={handleAddFoodIntoCart}
+        />
       </S.WrapperButton>
     </S.Container>
   );
