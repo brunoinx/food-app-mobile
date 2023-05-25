@@ -9,17 +9,9 @@ interface IUser {
 }
 
 interface StoreProps {
-  user: IUser;
-  setUpdateUser: (user: IUser) => void;
+  user: IUser | null;
+  setUpdateUser: (user: IUser | null) => void;
 }
-
-const initialState: IUser = {
-  id: '',
-  email: '',
-  name: '',
-  phoneNumber: '',
-  photoUrl: '',
-};
 
 export const userStore = create<StoreProps>()(set => ({
   user: null,

@@ -5,6 +5,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
 
 import * as S from './styles';
 
@@ -15,49 +16,59 @@ import { CardFood } from '@/components/CardFood';
 import { SearchInput } from '@/components/SearchInput';
 
 import { FoodDTO } from '@/dtos/FoodDTO';
+import { NavigationProps } from '@/dtos/RootParamsListDTO';
 
-export function Home() {
+export function Home({ navigation }: NavigationProps) {
   const [foods, setFoods] = useState<FoodDTO[]>([]);
 
   useEffect(() => {
-    async function fetchFoods() {
-      try {
-        const response = await fetch(
-          'http://192.168.100.23:3000/foods?_start=0&_end=6',
-        );
-        const data = await response.json();
+    const subscriber = firestore()
+      .collection('foods')
+      .limit(6)
+      .onSnapshot(querySnapshot => {
+        let listFoods = [];
 
-        setFoods(data);
-      } catch (error) {
-        console.log('Ocorreu um erro:', error);
-      }
-    }
+        querySnapshot.forEach(documentSnapshot => {
+          listFoods.push({
+            ...documentSnapshot.data(),
+            id: documentSnapshot.id,
+          });
+        });
 
-    fetchFoods();
+        setFoods(listFoods);
+      });
+
+    return () => subscriber();
   }, []);
+
+  function handleOpenDetailsFood(foodDetails: FoodDTO) {
+    navigation.navigate('FoodDetails', { food: foodDetails });
+  }
+
+  function handleOpenCart() {
+    navigation.navigate('Cart');
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <S.Container>
-        <S.Wrapper>
+        <S.WrapperHeading>
           <S.Header>
             <TouchableOpacity>
               <Menu />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleOpenCart}>
               <Cart />
             </TouchableOpacity>
           </S.Header>
-        </S.Wrapper>
 
-        <S.Title>
-          Delicious {'\n'}
-          food for you
-        </S.Title>
+          <S.Title>
+            Delicious {'\n'}
+            food for you
+          </S.Title>
 
-        <S.Wrapper>
           <SearchInput />
-        </S.Wrapper>
+        </S.WrapperHeading>
 
         <S.WrapperList>
           <FlatList
@@ -69,7 +80,8 @@ export function Home() {
                   key={item.id}
                   name={item.name}
                   value={item.value}
-                  image={item.image}
+                  images={item.images}
+                  onPress={() => handleOpenDetailsFood(item)}
                 />
               </S.WrapperCard>
             )}
@@ -77,6 +89,7 @@ export function Home() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               paddingTop: 64,
+              paddingLeft: 32,
             }}
           />
         </S.WrapperList>

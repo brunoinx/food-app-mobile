@@ -7,8 +7,8 @@ export const Container = styled.View`
 export const HeaderBox = styled.View`
   ${({ theme }) => css`
     width: 100%;
-    height: 40%;
-    max-height: 382px;
+    height: 36%;
+    max-height: 362px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     padding-top: 68px;

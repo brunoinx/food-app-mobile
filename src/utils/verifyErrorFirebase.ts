@@ -163,7 +163,7 @@ export function verifyErrorFirebase(errorCode: string) {
     case 'auth/session-cookie-revoked':
       return 'O COOKIE da sessão perdeu a validade.';
     case 'auth/uid-alread-exists':
-      return 'O indentificador fornecido já está em uso.';
+      return 'O identificador fornecido já está em uso.';
     case 'auth/email-already-exists':
       return 'O e-mail fornecido já está em uso.';
     case 'auth/phone-number-already-exists':

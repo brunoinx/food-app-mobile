@@ -8,9 +8,9 @@ import {
   ClockCounterClockwise,
 } from 'phosphor-react-native';
 
-import { AppStackRoutes } from './stacks/app.routes';
 import { RootTabsParamList } from '@/dtos/RootParamsListDTO';
 
+import { Home } from '@/screens/app/Home';
 import { Favorites } from '@/screens/app/Favorites';
 import { Profile } from '@/screens/app/Profile';
 import { History } from '@/screens/app/History';
@@ -22,7 +22,7 @@ export function TabRoutes() {
 
   const icons = [
     {
-      screen: 'HomeStack',
+      screen: 'Home',
       icon: House,
     },
     {
@@ -70,7 +70,7 @@ export function TabRoutes() {
         },
       })}
     >
-      <Screen name="HomeStack" component={AppStackRoutes} />
+      <Screen name="Home" component={Home} />
       <Screen name="Favorites" component={Favorites} />
       <Screen name="Profile" component={Profile} />
       <Screen name="History" component={History} />

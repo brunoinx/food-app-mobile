@@ -5,15 +5,15 @@ import { FoodDTO } from '@/dtos/FoodDTO';
 
 import * as S from './styles';
 
-export type FoodProps = Omit<FoodDTO, 'id' | 'description'> &
+export type FoodProps = Pick<FoodDTO, 'name' | 'value' | 'images'> &
   TouchableOpacityProps;
 
-export function CardFood({ name, value, image, ...rest }: FoodProps) {
+export function CardFood({ name, value, images, ...rest }: FoodProps) {
   return (
     <S.Container activeOpacity={0.7} {...rest}>
       <S.ShadowView>
         <S.Box>
-          <S.FoodImage source={{ uri: image }} resizeMode="contain" />
+          <S.FoodImage source={{ uri: images[0] }} resizeMode="contain" />
 
           <S.Name>{name}</S.Name>
 
