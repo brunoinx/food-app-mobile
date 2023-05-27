@@ -50,8 +50,8 @@ export function FoodIntoCart({
     PanGestureHandlerGestureEvent,
     AnimatedGHContext
   >({
-    onStart: (_, ctx) => {
-      ctx.startX = withTiming(translateX.value);
+    onStart: event => {
+      translateX.value = event.translationX;
     },
     onActive: event => {
       translateX.value = event.translationX;
@@ -80,11 +80,11 @@ export function FoodIntoCart({
   });
 
   function dispatchAnimationDelete() {
-    try {
-      translateX.value = withTiming(-SCREEN_WIDTH);
-    } finally {
+    translateX.value = withTiming(-SCREEN_WIDTH, { duration: 300 });
+
+    setTimeout(() => {
       onDeleteItem();
-    }
+    }, 320);
   }
 
   return (
