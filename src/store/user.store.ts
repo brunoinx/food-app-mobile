@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
-interface IUser {
-  id: string;
+export interface IUser {
+  uid: string;
   name?: string;
   email: string;
   photoUrl?: string;

@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 import { AppStackRoutes } from './stacks/app.routes';
 import { AuthStackRoutes } from './stacks/auth.routes';
 
-import { userStore } from '@/store/user.store';
+import { userStore, IUser } from '@/store/user.store';
 
 export function Routes() {
   const { user, setUpdateUser } = userStore();
 
   const [initializing, setInitializing] = useState(true);
 
-  function onAuthStateChanged(_user: FirebaseAuthTypes.User | null) {
+  function onAuthStateChanged(_user: IUser | null) {
     try {
-      // if (user === null) {
-      //   setUpdateUser(null);
-      //   return;
-      // }
-
-      setUpdateUser({
-        id: _user.uid,
-        name: _user.displayName,
-        email: _user.email,
-        photoUrl: _user.photoURL,
-        phoneNumber: _user.phoneNumber,
-      });
+      setUpdateUser(_user);
     } catch (error) {
       console.log(error);
     } finally {
@@ -36,7 +25,7 @@ export function Routes() {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
 
-    return subscriber;
+    return () => subscriber();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,7 +33,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {user === null ? <AuthStackRoutes /> : <AppStackRoutes />}
+      {!user ? <AuthStackRoutes /> : <AppStackRoutes />}
     </NavigationContainer>
   );
 }
