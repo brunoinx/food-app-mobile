@@ -2,8 +2,6 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
-import { Trash } from 'phosphor-react-native';
-import { useTheme } from 'styled-components';
 
 import { Header } from '@/components/Header';
 import { Button } from '@/components/Button';
@@ -16,14 +14,12 @@ import InfoIcon from '@/assets/icons/info-swipe.svg';
 import CartIcon from '@/assets/icons/empty-cart.svg';
 
 import * as S from './styles';
-import { Swipeable } from '@/components/Swipeable';
 
 export function Cart() {
-  const { colors } = useTheme();
   const navigation = useNavigation();
   const [cartState, setCartState] = useState<FoodDTO[]>([]);
 
-  const { cart, addToCart, decrementAmount } = useCartStore();
+  const { cart, addToCart, decrementAmount, removeFromCart } = useCartStore();
 
   useEffect(() => {
     setCartState(cart);
@@ -31,6 +27,10 @@ export function Cart() {
 
   function handleBackToHomeScreen() {
     navigation.reset({ index: 0, routes: [{ name: 'HomeTabs' }] });
+  }
+
+  function handleDeleteFood(food: FoodDTO) {
+    removeFromCart(food);
   }
 
   return (
@@ -44,21 +44,14 @@ export function Cart() {
           data={cartState}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <>
-              <Swipeable>
-                <S.WrapperItem>
-                  <FoodIntoCart
-                    data={item}
-                    increment={() => addToCart(item)}
-                    decrement={() => decrementAmount(item)}
-                  />
-                </S.WrapperItem>
-              </Swipeable>
-
-              <S.IconContainer onPress={() => console.log('oi')}>
-                <Trash color={colors.white} weight="bold" size={26} />
-              </S.IconContainer>
-            </>
+            <S.WrapperItem>
+              <FoodIntoCart
+                data={item}
+                increment={() => addToCart(item)}
+                decrement={() => decrementAmount(item)}
+                onDeleteItem={() => handleDeleteFood(item)}
+              />
+            </S.WrapperItem>
           )}
           style={{ marginTop: 50 }}
           showsVerticalScrollIndicator={false}

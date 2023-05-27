@@ -9,26 +9,6 @@ export const WrapperScreen = styled.View`
   padding: 0 40px;
 `;
 
-export const IconContainer = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})`
-  height: 62px;
-  width: 62px;
-  border-radius: 31px;
-
-  margin-top: 20px;
-
-  position: absolute;
-  right: 6%;
-
-  align-items: center;
-  justify-content: center;
-
-  z-index: -10;
-
-  background-color: ${({ theme }) => theme.colors.error};
-`;
-
 export const WrapperInfo = styled.View`
   flex-direction: row;
   align-items: center;
