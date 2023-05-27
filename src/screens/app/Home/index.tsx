@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 import * as S from './styles';
 
@@ -15,10 +16,14 @@ import Cart from '@/assets/icons/cart.svg';
 import { CardFood } from '@/components/CardFood';
 import { SearchInput } from '@/components/SearchInput';
 
+import { useToast } from '@/hooks/useToast';
 import { FoodDTO } from '@/dtos/FoodDTO';
 import { NavigationProps } from '@/dtos/RootParamsListDTO';
+import { userStore } from '@/store/user.store';
 
 export function Home({ navigation }: NavigationProps) {
+  const { setUpdateUser } = userStore();
+  const { showToast } = useToast();
   const [foods, setFoods] = useState<FoodDTO[]>([]);
 
   useEffect(() => {
@@ -41,6 +46,19 @@ export function Home({ navigation }: NavigationProps) {
     return () => subscriber();
   }, []);
 
+  function handleSignOut() {
+    auth()
+      .signOut()
+      .then(() => {
+        showToast({
+          title: 'OK',
+          description: 'Você foi deslogado com sucesso!',
+        });
+
+        setUpdateUser(null);
+      });
+  }
+
   function handleOpenDetailsFood(foodDetails: FoodDTO) {
     navigation.navigate('FoodDetails', { food: foodDetails });
   }
@@ -54,7 +72,7 @@ export function Home({ navigation }: NavigationProps) {
       <S.Container>
         <S.WrapperHeading>
           <S.Header>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSignOut}>
               <Menu />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleOpenCart}>

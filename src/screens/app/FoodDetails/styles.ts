@@ -14,8 +14,9 @@ export const WrapperHeader = styled.View`
 
 export const WrapperCarousel = styled.View`
   width: 100%;
-  align-items: center;
+  height: 34%;
   margin-top: 16px;
+  align-items: center;
 `;
 
 export const FoodName = styled.Text`
@@ -24,7 +25,7 @@ export const FoodName = styled.Text`
 
     line-height: 33px;
     text-align: center;
-    margin: 30px 0 12px;
+    margin: 12px 0 10px;
 
     font-family: ${theme.fonts.inter[600]};
     color: ${theme.colors.black};
@@ -43,7 +44,7 @@ export const Value = styled.Text`
 `;
 
 export const WrapperInfo = styled.View`
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 0 46px;
 `;
 
@@ -72,7 +73,7 @@ export const InfoDescription = styled.Text`
 export const WrapperButton = styled.View`
   width: 100%;
   padding: 0 42px;
-  position: absolute;
 
-  bottom: 28px;
+  position: absolute;
+  bottom: 24px;
 `;
