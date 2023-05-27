@@ -2,7 +2,11 @@ import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  padding: 42px 40px 0;
+  padding-top: 42px;
+`;
+
+export const WrapperScreen = styled.View`
+  padding: 0 40px;
 `;
 
 export const WrapperInfo = styled.View`

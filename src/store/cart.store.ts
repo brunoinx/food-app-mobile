@@ -4,31 +4,23 @@ import { create } from 'zustand';
 
 import { FoodDTO } from '@/dtos/FoodDTO';
 
-// export const cartPersistStorage = new MMKV({ id: '@food-app/cart' });
+type OmittedFoodProps = Omit<FoodDTO, 'description' | 'images' | 'isFavorite'>;
 
-// const zustandMMKVStorage: StateStorage = {
-//   setItem: (name, value) => {
-//     return cartPersistStorage.set(name, value);
-//   },
-//   getItem: name => {
-//     const value = cartPersistStorage.getString(name);
-//     return value ?? null;
-//   },
-//   removeItem: name => {
-//     return cartPersistStorage.delete(name);
-//   },
-// };
+export interface CardFoodProps extends OmittedFoodProps {
+  image: string;
+  amount: number;
+}
 
 interface State {
-  cart: FoodDTO[];
+  cart: CardFoodProps[];
   totalItems: number;
   totalPrice: number;
 }
 
 interface Actions {
-  addToCart: (food: FoodDTO) => void;
-  removeFromCart: (food: FoodDTO) => void;
-  decrementAmount: (food: FoodDTO) => void;
+  addToCart: (food: CardFoodProps) => void;
+  removeFromCart: (food: CardFoodProps) => void;
+  decrementAmount: (food: CardFoodProps) => void;
 }
 
 const INITIAL_STATE: State = {
@@ -47,8 +39,8 @@ export const useCartStore = create<State & Actions>((set, get) => ({
 
     // se o item já existir no carrinho, aumenta a quantidade
     if (foodItem) {
-      const updatedCart = cart.map(
-        item => item.id === food.id && { ...item, amount: item.amount + 1 },
+      const updatedCart = cart.map(item =>
+        item.id === food.id ? { ...item, amount: item.amount + 1 } : item,
       );
       set(state => ({
         cart: updatedCart,
@@ -77,8 +69,8 @@ export const useCartStore = create<State & Actions>((set, get) => ({
     const foodItem = cart.find(item => item.id === food.id);
 
     if (foodItem.amount >= 2) {
-      const decrement = cart.map(
-        item => item.id === food.id && { ...item, amount: item.amount - 1 },
+      const decrement = cart.map(item =>
+        item.id === food.id ? { ...item, amount: item.amount - 1 } : item,
       );
 
       set(state => ({

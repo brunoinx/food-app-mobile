@@ -7,8 +7,7 @@ import { Header } from '@/components/Header';
 import { Button } from '@/components/Button';
 import { FoodIntoCart } from '@/components/FoodIntoCart';
 
-import { FoodDTO } from '@/dtos/FoodDTO';
-import { useCartStore } from '@/store/cart.store';
+import { useCartStore, CardFoodProps } from '@/store/cart.store';
 
 import InfoIcon from '@/assets/icons/info-swipe.svg';
 import CartIcon from '@/assets/icons/empty-cart.svg';
@@ -17,9 +16,9 @@ import * as S from './styles';
 
 export function Cart() {
   const navigation = useNavigation();
-  const [cartState, setCartState] = useState<FoodDTO[]>([]);
+  const [cartState, setCartState] = useState<CardFoodProps[]>([]);
 
-  const { cart, addToCart, decrementAmount } = useCartStore();
+  const { cart, addToCart, decrementAmount, removeFromCart } = useCartStore();
 
   useEffect(() => {
     setCartState(cart);
@@ -29,9 +28,15 @@ export function Cart() {
     navigation.reset({ index: 0, routes: [{ name: 'HomeTabs' }] });
   }
 
+  function handleDeleteFood(food: CardFoodProps) {
+    removeFromCart(food);
+  }
+
   return (
     <S.Container>
-      <Header name="Carrinho" handleBack={handleBackToHomeScreen} />
+      <S.WrapperScreen>
+        <Header name="Carrinho" handleBack={handleBackToHomeScreen} />
+      </S.WrapperScreen>
 
       <Suspense fallback={<ActivityIndicator size="large" color="black" />}>
         <FlatList
@@ -42,20 +47,24 @@ export function Cart() {
               <FoodIntoCart
                 name={item.name}
                 value={item.value}
-                image={item.images[0]}
                 amount={item.amount}
+                image={item.image}
                 increment={() => addToCart(item)}
                 decrement={() => decrementAmount(item)}
+                onDeleteItem={() => handleDeleteFood(item)}
               />
             </S.WrapperItem>
           )}
           style={{ marginTop: 50 }}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 40 }}
           ListHeaderComponent={
             cartState.length !== 0 && (
               <S.WrapperInfo>
                 <InfoIcon />
-                <S.Info>Arraste o item para deletá-lo do carrinho</S.Info>
+                <S.Info>
+                  Arraste o item para a direita deletá-lo do carrinho
+                </S.Info>
               </S.WrapperInfo>
             )
           }
@@ -73,19 +82,21 @@ export function Cart() {
         />
       </Suspense>
 
-      {cartState.length === 0 ? (
-        <Button
-          name="Voltar a página principal"
-          style={{ marginVertical: 20 }}
-          onPress={handleBackToHomeScreen}
-        />
-      ) : (
-        <Button
-          name="Finalizar Pedido"
-          style={{ marginVertical: 20 }}
-          // onPress={() => {}}
-        />
-      )}
+      <S.WrapperScreen>
+        {cartState.length === 0 ? (
+          <Button
+            name="Voltar a página principal"
+            style={{ marginVertical: 20 }}
+            onPress={handleBackToHomeScreen}
+          />
+        ) : (
+          <Button
+            name="Finalizar Pedido"
+            style={{ marginVertical: 20 }}
+            // onPress={() => {}}
+          />
+        )}
+      </S.WrapperScreen>
     </S.Container>
   );
 }

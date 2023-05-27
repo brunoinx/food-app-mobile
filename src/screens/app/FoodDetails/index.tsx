@@ -8,8 +8,10 @@ import { Header } from '@/components/Header';
 import { Button } from '@/components/Button';
 import { CustomCarousel } from '@/components/CustomCarousel';
 
-import * as S from './styles';
+import { setMaskMoney } from '@/utils/setMaskMoney';
 import { useCartStore } from '@/store/cart.store';
+
+import * as S from './styles';
 
 interface RouteProps {
   food: FoodDTO;
@@ -18,6 +20,7 @@ interface RouteProps {
 export function FoodDetails({ route, navigation }: NavigationProps) {
   const addToCart = useCartStore(state => state.addToCart);
   const { food } = route.params as RouteProps;
+  const foodMaskedValue = setMaskMoney(food.value);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +38,12 @@ export function FoodDetails({ route, navigation }: NavigationProps) {
   function handleAddFoodIntoCart() {
     try {
       setIsLoading(true);
-      addToCart(food);
+
+      addToCart({
+        ...food,
+        amount: 1,
+        image: food.images[0],
+      });
       navigation.navigate('Cart');
     } finally {
       setIsLoading(false);
@@ -56,7 +64,7 @@ export function FoodDetails({ route, navigation }: NavigationProps) {
       </S.WrapperCarousel>
 
       <S.FoodName>{food.name}</S.FoodName>
-      <S.Value>{food.value}</S.Value>
+      <S.Value>{foodMaskedValue}</S.Value>
 
       <S.WrapperInfo>
         <S.InfoTitle>Informações do pedido: </S.InfoTitle>
