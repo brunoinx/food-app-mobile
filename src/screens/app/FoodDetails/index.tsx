@@ -35,7 +35,12 @@ export function FoodDetails({ route, navigation }: NavigationProps) {
   function handleAddFoodIntoCart() {
     try {
       setIsLoading(true);
-      addToCart(food);
+
+      addToCart({
+        ...food,
+        amount: 1,
+        image: food.images[0],
+      });
       navigation.navigate('Cart');
     } finally {
       setIsLoading(false);

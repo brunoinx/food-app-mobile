@@ -1,8 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import { Plus, Minus } from 'phosphor-react-native';
 import { Trash } from 'phosphor-react-native';
-
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
@@ -16,45 +14,58 @@ import {
   RectButton,
 } from 'react-native-gesture-handler';
 
-import { FoodDTO } from '@/dtos/FoodDTO';
-import * as S from './styles';
+import { CardFoodProps } from '@/store/cart.store';
+
 import theme from '@/styles/theme';
+import * as S from './styles';
+import { AmountButton } from './AmountButton';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TRANSLATE_X_THRESHOLD = -(SCREEN_WIDTH * 0.26);
 
-type CustomProps = Omit<FoodDTO, 'id' | 'isFavorite' | 'description'>;
+type AnimatedGHContext = {
+  startX: number;
+};
 
-interface FoodIntoCartProps {
-  data: CustomProps;
+type Props = Omit<CardFoodProps, 'id'>;
+
+interface FoodIntoCartProps extends Props {
   increment: () => void;
   decrement: () => void;
   onDeleteItem: () => void;
 }
 
 export function FoodIntoCart({
-  data,
+  name,
+  value,
+  amount = 1,
+  image,
   increment,
   decrement,
   onDeleteItem,
 }: FoodIntoCartProps) {
   const translateX = useSharedValue(0);
 
-  const gestureHandler =
-    useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
-      onActive: event => {
-        translateX.value = event.translationX;
-      },
-      onEnd: () => {
-        const shouldBeDismissed = translateX.value < TRANSLATE_X_THRESHOLD;
+  const gestureHandler = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    AnimatedGHContext
+  >({
+    onStart: (_, ctx) => {
+      ctx.startX = withTiming(translateX.value);
+    },
+    onActive: event => {
+      translateX.value = event.translationX;
+    },
+    onEnd: () => {
+      const shouldBeDismissed = translateX.value < TRANSLATE_X_THRESHOLD;
 
-        if (shouldBeDismissed) {
-          translateX.value = withTiming(TRANSLATE_X_THRESHOLD);
-        } else {
-          translateX.value = withTiming(0);
-        }
-      },
-    });
+      if (shouldBeDismissed) {
+        translateX.value = withTiming(TRANSLATE_X_THRESHOLD);
+      } else {
+        translateX.value = withTiming(0);
+      }
+    },
+  });
 
   const cardXStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -81,27 +92,18 @@ export function FoodIntoCart({
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={[cardXStyle]}>
           <S.Container>
-            <S.FoodImage
-              source={{ uri: data.images[0] }}
-              resizeMode="contain"
-            />
+            <S.FoodImage source={{ uri: image }} resizeMode="contain" />
 
             <S.GroupInfo>
-              <S.Title>{data.name}</S.Title>
-              <S.Value>{data.value}</S.Value>
+              <S.Title>{name}</S.Title>
+              <S.Value>{value}</S.Value>
             </S.GroupInfo>
 
-            <S.AmountView>
-              <S.AmountButton onPress={decrement}>
-                <Minus color="white" weight="bold" size={11} />
-              </S.AmountButton>
-
-              <S.AmountText>{data.amount}</S.AmountText>
-
-              <S.AmountButton onPress={increment}>
-                <Plus color="white" weight="bold" size={11} />
-              </S.AmountButton>
-            </S.AmountView>
+            <AmountButton
+              amount={amount}
+              increment={increment}
+              decrement={decrement}
+            />
           </S.Container>
         </Animated.View>
       </PanGestureHandler>

@@ -7,8 +7,7 @@ import { Header } from '@/components/Header';
 import { Button } from '@/components/Button';
 import { FoodIntoCart } from '@/components/FoodIntoCart';
 
-import { FoodDTO } from '@/dtos/FoodDTO';
-import { useCartStore } from '@/store/cart.store';
+import { useCartStore, CardFoodProps } from '@/store/cart.store';
 
 import InfoIcon from '@/assets/icons/info-swipe.svg';
 import CartIcon from '@/assets/icons/empty-cart.svg';
@@ -17,7 +16,7 @@ import * as S from './styles';
 
 export function Cart() {
   const navigation = useNavigation();
-  const [cartState, setCartState] = useState<FoodDTO[]>([]);
+  const [cartState, setCartState] = useState<CardFoodProps[]>([]);
 
   const { cart, addToCart, decrementAmount, removeFromCart } = useCartStore();
 
@@ -29,7 +28,7 @@ export function Cart() {
     navigation.reset({ index: 0, routes: [{ name: 'HomeTabs' }] });
   }
 
-  function handleDeleteFood(food: FoodDTO) {
+  function handleDeleteFood(food: CardFoodProps) {
     removeFromCart(food);
   }
 
@@ -46,7 +45,10 @@ export function Cart() {
           renderItem={({ item }) => (
             <S.WrapperItem>
               <FoodIntoCart
-                data={item}
+                name={item.name}
+                value={item.value}
+                amount={item.amount}
+                image={item.image}
                 increment={() => addToCart(item)}
                 decrement={() => decrementAmount(item)}
                 onDeleteItem={() => handleDeleteFood(item)}
