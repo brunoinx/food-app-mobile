@@ -14,11 +14,13 @@ import {
   RectButton,
 } from 'react-native-gesture-handler';
 
+import { AmountButton } from './AmountButton';
+
 import { CardFoodProps } from '@/store/cart.store';
+import { setMaskMoney } from '@/utils/setMaskMoney';
 
 import theme from '@/styles/theme';
 import * as S from './styles';
-import { AmountButton } from './AmountButton';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TRANSLATE_X_THRESHOLD = -(SCREEN_WIDTH * 0.26);
@@ -44,6 +46,8 @@ export function FoodIntoCart({
   decrement,
   onDeleteItem,
 }: FoodIntoCartProps) {
+  const foodMaskedValue = setMaskMoney(value);
+
   const translateX = useSharedValue(0);
 
   const gestureHandler = useAnimatedGestureHandler<
@@ -96,7 +100,7 @@ export function FoodIntoCart({
 
             <S.GroupInfo>
               <S.Title>{name}</S.Title>
-              <S.Value>{value}</S.Value>
+              <S.Value>{foodMaskedValue}</S.Value>
             </S.GroupInfo>
 
             <AmountButton
