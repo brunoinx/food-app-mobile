@@ -10,6 +10,7 @@ export type RootAppStackParamList = {
   HomeTabs: undefined;
   FoodDetails: { food: FoodDTO };
   Cart: undefined;
+  NetworkInfo: undefined;
 };
 
 export type RootTabsParamList = {
