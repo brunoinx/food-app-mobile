@@ -15,7 +15,7 @@ export const WrapperHeader = styled.View`
 export const WrapperCarousel = styled.View`
   width: 100%;
   height: 34%;
-  margin-top: 16px;
+  margin: 16px 0;
   align-items: center;
 `;
 
