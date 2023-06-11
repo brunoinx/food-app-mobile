@@ -48,12 +48,13 @@ export function TabRoutes() {
         tabBarActiveTintColor: colors.main[400],
         tabBarInactiveTintColor: colors.zinc[500],
         tabBarStyle: {
-          height: 54,
-          position: 'absolute',
-          bottom: 14,
+          height: 58,
           backgroundColor: colors.zinc[300],
           elevation: 0,
-          border: 'none',
+        },
+        tabBarItemStyle: {
+          paddingTop: 8,
+          paddingBottom: 14,
         },
         tabBarIcon: ({ color, focused }) => {
           const { icon: Icon } = icons.find(
