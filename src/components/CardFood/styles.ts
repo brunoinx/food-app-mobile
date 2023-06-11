@@ -2,7 +2,7 @@ import { TouchableOpacity } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
 export const Container = styled(TouchableOpacity)`
-  height: 320px;
+  height: 300px;
 `;
 
 export const ShadowView = styled.View.attrs({ elevation: 8 })`
@@ -11,7 +11,9 @@ export const ShadowView = styled.View.attrs({ elevation: 8 })`
 `;
 
 export const Box = styled.View`
-  padding: 0 26px 32px;
+  width: 156px;
+  height: 200px;
+  padding: 0 20px 32px;
   border-radius: 18px;
   align-items: center;
 
@@ -19,10 +21,10 @@ export const Box = styled.View`
 `;
 
 export const FoodImage = styled.Image`
-  height: 125px;
-  width: 125px;
+  height: 105px;
+  width: 105px;
   border-radius: 80px;
-  margin-top: -60px;
+  margin-top: -50px;
 `;
 
 export const Name = styled.Text`
