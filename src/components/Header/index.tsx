@@ -1,8 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { CaretLeft, Heart } from 'phosphor-react-native';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { NavigationProps } from '@/dtos/RootParamsListDTO';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import * as S from './styles';
