@@ -8,7 +8,7 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  background-color: ${({ theme }) => theme.colors.zinc[300]};
+  background-color: ${({ theme }) => theme.colors.zinc[200]};
 `;
 
 export const Title = styled.Text`
