@@ -11,6 +11,7 @@ export type FoodProps = Pick<FoodDTO, 'name' | 'value' | 'images'> &
 
 export function CardFood({ name, value, images, ...rest }: FoodProps) {
   const foodMaskedValue = setMaskMoney(value);
+  const shortedName = name.length >= 7 ? `${name.substring(0, 5)}...` : name;
 
   return (
     <S.Container activeOpacity={0.7} {...rest}>
@@ -18,7 +19,7 @@ export function CardFood({ name, value, images, ...rest }: FoodProps) {
         <S.Box>
           <S.FoodImage source={{ uri: images[0] }} resizeMode="contain" />
 
-          <S.Name>{name}</S.Name>
+          <S.Name>{shortedName}</S.Name>
 
           <S.ValueText>{foodMaskedValue}</S.ValueText>
         </S.Box>

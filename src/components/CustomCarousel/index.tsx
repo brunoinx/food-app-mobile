@@ -4,6 +4,8 @@ import Carousel from 'react-native-reanimated-carousel';
 
 const WIDTH = Dimensions.get('window').width;
 
+import * as S from './styles';
+
 interface CarouselProps {
   data: string[];
 }
@@ -18,7 +20,14 @@ export function CustomCarousel({ data }: CarouselProps) {
         renderItem={Item}
         width={WIDTH}
         onSnapToItem={index => setActiveIndex(index)}
+        loop={data.length >= 2}
       />
+
+      <S.DotsContainer>
+        {data.map((_, index) => (
+          <S.Dots key={index} active={activeIndex === index} />
+        ))}
+      </S.DotsContainer>
     </>
   );
 }

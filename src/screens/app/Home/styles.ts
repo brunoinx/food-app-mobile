@@ -4,7 +4,7 @@ export const Container = styled.View`
   ${({ theme }) => css`
     flex: 1;
     padding-top: 65px;
-    background-color: ${theme.colors.zinc[300]};
+    background-color: ${theme.colors.zinc[200]};
   `}
 `;
 
