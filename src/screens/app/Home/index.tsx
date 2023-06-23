@@ -27,23 +27,31 @@ export function Home({ navigation }: NavigationProps) {
   const [foods, setFoods] = useState<FoodDTO[]>([]);
 
   useEffect(() => {
-    const subscriber = firestore()
-      .collection('foods')
-      .limit(6)
-      .onSnapshot(querySnapshot => {
-        let listFoods = [];
+    try {
+      const subscriber = firestore()
+        .collection('foods')
+        .limit(6)
+        .onSnapshot(querySnapshot => {
+          let listFoods = [];
 
-        querySnapshot.forEach(documentSnapshot => {
-          listFoods.push({
-            ...documentSnapshot.data(),
-            id: documentSnapshot.id,
+          if (querySnapshot === null) {
+            setFoods([]);
+            return;
+          }
+
+          querySnapshot.forEach(documentSnapshot => {
+            listFoods.push({
+              ...documentSnapshot.data(),
+              id: documentSnapshot.id,
+            });
           });
+
+          setFoods(listFoods);
         });
-
-        setFoods(listFoods);
-      });
-
-    return () => subscriber();
+      return () => subscriber();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   function handleSignOut() {
