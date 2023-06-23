@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
-  flex: 1;
-  padding-top: 42px;
+  ${({ theme }) => css`
+    flex: 1;
+    padding-top: 42px;
+    background-color: ${theme.colors.zinc[200]};
+  `}
 `;
 
 export const WrapperScreen = styled.View`

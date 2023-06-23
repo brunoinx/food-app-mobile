@@ -49,7 +49,7 @@ export function TabRoutes() {
         tabBarInactiveTintColor: colors.zinc[500],
         tabBarStyle: {
           height: 58,
-          backgroundColor: colors.zinc[300],
+          backgroundColor: colors.zinc[200],
           elevation: 0,
         },
         tabBarItemStyle: {
